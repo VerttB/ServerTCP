@@ -1,3 +1,5 @@
+package Threads;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -13,7 +15,7 @@ public class TesteThread implements Runnable {
     public void run() {
         String nome,email,ano;
         try {
-            System.out.println("Cliente conectado pela porta: " + this.socket.getInetAddress().getHostAddress());
+            System.out.println("Threads.Cliente conectado pela porta: " + this.socket.getInetAddress().getHostAddress());
             ObjectOutputStream saida = new ObjectOutputStream(this.socket.getOutputStream());
             ObjectInputStream entrada = new ObjectInputStream(this.socket.getInputStream());
             saida.flush();
@@ -28,7 +30,7 @@ public class TesteThread implements Runnable {
             saida.flush();
             saida.writeObject("Diga o ano");
             ano = (String) entrada.readObject();
-           // agendas.add(Agenda.criarAgenda(email, nome, ano));
+           // agendas.add(Threads.Agenda.criarAgenda(email, nome, ano));
             entrada.close();
             saida.close();
             this.socket.close();

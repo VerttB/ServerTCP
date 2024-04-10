@@ -1,13 +1,21 @@
+package Threads;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class Cliente {
-    public static void main(String[] args) {
+    private String host;
+    private int port;
+
+    public Cliente(String host, int port){
+        this.host = host;
+        this.port = port;
+    }
+    public void connect() {
         try {
             String msg = "";
-
             Socket cliente = new Socket("localhost", 12345);
             Scanner in = new Scanner(System.in);
             ObjectOutputStream saida = new ObjectOutputStream(cliente.getOutputStream());
@@ -17,9 +25,6 @@ public class Cliente {
                 msg = in.nextLine();
                 saida.writeObject(msg);
             }
-
-
-
             saida.close();
             entrada.close();
             System.out.println("Conexão Encerrada");

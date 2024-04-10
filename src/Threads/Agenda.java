@@ -1,3 +1,5 @@
+package Threads;
+
 import java.util.Scanner;
 
 public class Agenda {
