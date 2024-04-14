@@ -5,7 +5,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class TesteThread implements Runnable {
-    private Socket socket;
+    private final Socket socket;
 
     public TesteThread(Socket cliente) {
         this.socket = cliente;
