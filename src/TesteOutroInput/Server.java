@@ -15,23 +15,20 @@ public class Server {
     }
 
 
-    public void start(){
+    public void start() {
         try {
             ServerSocket server = new ServerSocket(this.port);
-            Socket cliente = server.accept();
-            InputStreamReader inputStreamReader = new InputStreamReader(cliente.getInputStream()) ;
-            BufferedReader reader = new BufferedReader(inputStreamReader);
-            String msg = reader.readLine();
-            System.out.println("Cliente: " + msg);
-            PrintStream send = new PrintStream(cliente.getOutputStream());
-            send.println("Bom Dia cliente");
-
-        }
-        catch (Exception e){
+            while (true) {
+                Socket cliente = server.accept();
+                ServerThread serverThread = new ServerThread(cliente);
+                Thread thread = new Thread(serverThread);
+                thread.start();
+            }
+        } catch (Exception e) {
             e.getMessage();
         }
-
     }
+
 
     public static void main(String[] args) {
         Server server = new Server(12345);
